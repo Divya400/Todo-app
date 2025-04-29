@@ -47,6 +47,22 @@ body {
     color: white;
   }
   
+  .filters button {
+    margin: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: white;
+  }
+  
+  .filters button.active {
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+  }
+  
   .todo-item {
     background-color: white;
     color: black;
@@ -55,34 +71,6 @@ body {
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-  }
-  
-  .todo-text {
-    font-size: 1.1rem;
-    font-weight: bold;
-  }
-  
-  .todo-buttons {
-    display: flex;
-    gap: 0.5rem;
-  }
-  
-  button.delete {
-    background-color: #dc3545;
-    color: white;
-  }
-  
-  button.icon {
-    background-color: #007bff;
-    color: white;
-  }
-
-  .todo-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 10px 0;
   }
   
   .todo-item.completed .todo-text {
@@ -90,13 +78,20 @@ body {
     color: gray;
   }
   
-  .filters button {
-    margin: 5px;
+  .todo-buttons button {
+    margin-left: 5px;
     padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
   }
   
-  .filters button:hover {
-    background-color: #ddd;
+  .todo-buttons .delete {
+    background-color: #dc3545;
+    color: white;
   }
   
+  .todo-buttons .move-button {
+    background-color: #007bff;
+    color: white;
+  }
