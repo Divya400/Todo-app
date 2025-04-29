@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 
 function App() {
-  const [todos, setTodos] = useState([]);
-  const [filter, setFilter] = useState('all'); // 'all', 'active', 'completed'
+  const [todos, setTodos] = useState(() => {
+    const savedTodos = localStorage.getItem('todos');
+    return savedTodos ? JSON.parse(savedTodos) : [];
+  });
+  const [filter, setFilter] = useState('all');
 
-  const addTodo = (text) => {
-    if (!text.trim()) return; // Prevent adding empty or whitespace-only todos
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
+
+  const addTodo = (text, dueDate, category) => {
+    if (!text.trim()) return;
     const newTodo = {
       id: Date.now(),
       text,
+      dueDate,
+      category,
       completed: false,
     };
     setTodos([newTodo, ...todos]);
@@ -53,7 +62,7 @@ function App() {
   const filteredTodos = todos.filter((todo) => {
     if (filter === 'active') return !todo.completed;
     if (filter === 'completed') return todo.completed;
-    return true; // 'all'
+    return true;
   });
 
   return (
